@@ -29,16 +29,19 @@ Crafty.c('Actor', {
 
 Crafty.c('Block', {
   init: function() {
-    this.requires('Actor, Solid, spr_block, Tint, Mouse')
+    this.requires('Actor, Solid, spr_block, Tint, Mouse, Tween')
         .areaMap([0,0], [48,0], [48,48], [0,48])
+        .attr({alpha: 0.4})
         //.tint("#ffffff", 0.0);
-        .tint("#303060", 0.4);
-    this.bind('Click', function() {
+        .tint("#303060", 0.0);
+    this.bind('MouseDown', function() {
         console.log("Clicked!!");
         //Crafty.audio.play('note8');
         Crafty.audio.play(Crafty.notearray[this.i]);
         console.log(this.i);
-        this.tint("#ffffff", 0.0);
+        //this.tint("#ffffff", 0.0);
+        this.attr({alpha: 1.0})
+        this.tween({alpha: 0.4}, 20)
     })
 
     
